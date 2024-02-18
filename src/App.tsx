@@ -1,9 +1,9 @@
-import Converter from "./Converter"
+import StyledConverter from "./Converter"
 
 const App = () => {
   return (
     <>
-    <Converter />
+    <StyledConverter />
     </>
   )
 }
