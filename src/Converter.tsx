@@ -85,9 +85,24 @@ export default function Converter() {
     setSecondInput(`${result}`)
   };
 
+  const AllOk = (target: string) => {
+    let flag
+    for (let i of target) {
+      if (actions.includes(i)) {
+        flag = true
+      } else {
+        flag = false
+        return false
+      }
+    }
+    if (flag === true) {
+      return true
+    }
+  }
+
   const handleChangeFirstInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     let target = e.target.value
-    if (actions.includes(target[target.length - 1]) && target.length < 13) {
+    if (AllOk(target) && target.length < 13) {
       if (firstInput[0] == '0' && target.length == 2 && target[1] != '0' && target[1] != '.' && target[1] != ',') {
         let secondNumber = target[1]
         target = firstInput.substring(0, firstInput.length - 1) + secondNumber
@@ -107,6 +122,17 @@ export default function Converter() {
         target = firstInput
       }
       if (firstInput[0] == '0' && target[1] == '0' && target[0] == '0') {
+        target = firstInput
+      }
+      if ((target[0] == ',' || target[0] == '.') && target[1] == '.') {
+        target = firstInput
+      }
+      if (target.includes(',')) {
+        console.log(target, firstInput)
+        target = target.replace(',', '.')
+        console.log(target, firstInput)
+      }
+      if (target.includes('..') || target.split('.').length > 2 || target.includes('.,') || target.split(',').length > 2 || target.includes(',.') || target.includes(',,') || target.split('.').length < 1) {
         target = firstInput
       }
       setFirstInput(target)
@@ -143,6 +169,7 @@ export default function Converter() {
         setSecondInput(`${result}`)
       }
       if (firstInput.length > target.length) {
+        target = '0'
         setFirstInput(target)
         const firstNumber = Number(target)
         let contentOne: any = []
@@ -163,7 +190,7 @@ export default function Converter() {
 
   const handleChangeSecondInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     let target = e.target.value
-    if (actions.includes(target[target.length - 1]) && target.length < 13) {
+    if (AllOk(target) && target.length < 13) {
       if (secondInput[0] == '0' && target.length == 2 && target[1] != '0' && target[1] != '.' && target[1] != ',') {
         let secondNumber = target[1]
         target = secondInput.substring(0, secondInput.length - 1) + secondNumber
@@ -183,6 +210,15 @@ export default function Converter() {
         target = secondInput
       }
       if (secondInput[0] == '0' && target[1] == '0' && target[0] == '0') {
+        target = secondInput
+      }
+      if ((target[0] == ',' || target[0] == '.') && target[1] == '.') {
+        target = secondInput
+      }
+      if (target.includes(',')) {
+        target = target.replace(',', '.')
+      }
+      if (target.includes('..') || target.split('.').length > 2 || target.includes('.,') || target.split(',').length > 2 || target.includes(',.') || target.includes(',,') || target.split('.').length < 1) {
         target = secondInput
       }
       setSecondInput(target)
@@ -219,6 +255,7 @@ export default function Converter() {
         setFirstInput(`${result}`)
       }
       if (secondInput.length > target.length) {
+        target = '0'
         setSecondInput(target)
         const firstNumber = Number(target)
         let contentOne: any = []
@@ -272,10 +309,10 @@ export default function Converter() {
         </IconButton>
       </Box>
 
-      <Container sx={{bgcolor: 'background.default'}}>
+      <Container sx={{ bgcolor: 'background.default' }}>
         <Typography variant='h4' sx={{ marginTop: 3, textAlign: 'center' }}>Currency Converter</Typography>
         <Box sx={{ minWidth: 120, display: 'flex', justifyContent: 'space-around', margin: 2 }}>
-          <FormControl sx={{ "& button:Mui-selected": {color:"success"},}}>
+          <FormControl sx={{ "& button:Mui-selected": { color: "success" }, }}>
             <InputLabel>From</InputLabel>
             <Select
               value={firstSelect}
