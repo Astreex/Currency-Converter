@@ -300,16 +300,18 @@ export default function Converter() {
           </FormControl>
         </Box>
         <Box sx={{ minWidth: 120, display: 'flex', justifyContent: 'space-around', margin: 2, flexWrap: 'wrap' }}>
-        <TextField
-          value={firstInput}
-          onChange={handleChangeFirstInput}
-          size="small"
+          <TextField
+            sx={{ marginTop: 1.5, marginRight: 2 }}
+            value={firstInput}
+            onChange={handleChangeFirstInput}
+            size="small"
           />
-        <TextField
-          value={secondInput}
-          onChange={handleChangeSecondInput}
-          size="small"
-        />
+          <TextField
+            sx={{ marginTop: 1.5, marginRight: 2 }}
+            value={secondInput}
+            onChange={handleChangeSecondInput}
+            size="small"
+          />
         </Box>
       </Container>
     </>
