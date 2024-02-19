@@ -135,6 +135,9 @@ export default function Converter() {
       if (target.includes('..') || target.split('.').length > 2 || target.includes('.,') || target.split(',').length > 2 || target.includes(',.') || target.includes(',,') || target.split('.').length < 1) {
         target = firstInput
       }
+      if (target == '.') {
+        target = '0'
+      }
       setFirstInput(target)
       const firstNumber = Number(target)
       let contentOne: any = []
@@ -220,6 +223,9 @@ export default function Converter() {
       }
       if (target.includes('..') || target.split('.').length > 2 || target.includes('.,') || target.split(',').length > 2 || target.includes(',.') || target.includes(',,') || target.split('.').length < 1) {
         target = secondInput
+      }
+      if (target == '.') {
+        target = '0'
       }
       setSecondInput(target)
       const firstNumber = Number(target)
