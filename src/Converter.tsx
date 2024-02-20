@@ -118,19 +118,18 @@ export default function Converter() {
       if (target[target.length - 1] == ',') {
         target = firstInput + '.'
       }
-      if ((firstInput.includes(',') || firstInput.includes('.')) && (target.includes(',') || target.includes('.')) && (target[target.length - 1] == ',' || target[target.length - 1] == '.') && firstInput.length < target.length) {
+      if ((firstInput.includes(',') || firstInput.includes('.')) && (target.includes(',') || target.includes('.')) && (target[target.length - 1] == ',' || target[target.length - 1] == '.') && firstInput.length < target.length && firstInput.length < 2) {
         target = firstInput
+        console.log(123)
       }
       if (firstInput[0] == '0' && target[1] == '0' && target[0] == '0') {
-        target = firstInput
+        target = firstInput + '0'
       }
       if ((target[0] == ',' || target[0] == '.') && target[1] == '.') {
         target = firstInput
       }
       if (target.includes(',')) {
-        console.log(target, firstInput)
         target = target.replace(',', '.')
-        console.log(target, firstInput)
       }
       if (target.includes('..') || target.split('.').length > 2 || target.includes('.,') || target.split(',').length > 2 || target.includes(',.') || target.includes(',,') || target.split('.').length < 1) {
         target = firstInput
@@ -143,6 +142,9 @@ export default function Converter() {
       }
       if (target[0] == '0' && target[1] != '.') {
         target = target.substring(1, target.length)
+      }
+      if (target == '' && firstInput[1] == '.') {
+        target = '0'
       }
       setFirstInput(target)
       const firstNumber = Number(target)
@@ -215,7 +217,7 @@ export default function Converter() {
       if (target[target.length - 1] == ',') {
         target = secondInput + '.'
       }
-      if ((secondInput.includes(',') || secondInput.includes('.')) && (target.includes(',') || target.includes('.')) && (target[target.length - 1] == ',' || target[target.length - 1] == '.') && secondInput.length < target.length) {
+      if ((secondInput.includes(',') || secondInput.includes('.')) && (target.includes(',') || target.includes('.')) && (target[target.length - 1] == ',' || target[target.length - 1] == '.') && secondInput.length < target.length && secondInput.length < 2) {
         target = secondInput
       }
       if (secondInput[0] == '0' && target[1] == '0' && target[0] == '0') {
@@ -238,6 +240,9 @@ export default function Converter() {
       }
       if (target[0] == '0' && target[1] != '.') {
         target = target.substring(1, target.length)
+      }
+      if (target == '' && secondInput[1] == '.') {
+        target = '0'
       }
       setSecondInput(target)
       const firstNumber = Number(target)
