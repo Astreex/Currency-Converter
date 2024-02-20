@@ -138,6 +138,12 @@ export default function Converter() {
       if (target == '.') {
         target = '0'
       }
+      if (target[0] == '.' && firstInput[0] != '.') {
+        target = '0' + target
+      }
+      if (target[0] == '0' && target[1] != '.') {
+        target = target.substring(1, target.length)
+      }
       setFirstInput(target)
       const firstNumber = Number(target)
       let contentOne: any = []
@@ -226,6 +232,12 @@ export default function Converter() {
       }
       if (target == '.') {
         target = '0'
+      }
+      if (target[0] == '.' && firstInput[0] != '.') {
+        target = '0' + target
+      }
+      if (target[0] == '0' && target[1] != '.') {
+        target = target.substring(1, target.length)
       }
       setSecondInput(target)
       const firstNumber = Number(target)
