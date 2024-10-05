@@ -1,4 +1,4 @@
-import { StyledConverter } from "./Converter"
+import { StyledConverter } from "./StyledConverter"
 
 const App = () => {
   return (

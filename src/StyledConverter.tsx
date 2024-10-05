@@ -24,7 +24,7 @@ type RequestType = {
 
 const ColorModeContext = createContext({ styledConverter: () => { } });
 
-export default function Converter() {
+function FunctionalityOfConverter() {
   const [data, setData] = useState({} as RequestType)
   const [firstSelect, setFirstSelect] = useState('USD')
   const [secondSelect, setSecondSelect] = useState("RUB")
@@ -425,7 +425,7 @@ export function StyledConverter() {
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
-        <Converter />
+        <FunctionalityOfConverter />
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
